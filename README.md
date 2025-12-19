@@ -13,7 +13,7 @@ After downloading, place the folders inside the project root directory:
 Computer Vision - LB02 - Group 6/
 ├── rtdetr_checkpoint/
 ├── indonesian_plate_ocr_lora/
-
+```
 # A Comparative Analysis of Deep Learning Pipelines for Real-Time Indonesian ALPR and Vehicle Tax Inquiry
 
 **Authors:**
