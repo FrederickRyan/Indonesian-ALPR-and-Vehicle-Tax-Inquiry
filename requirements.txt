@@ -1,0 +1,10 @@
+streamlit
+ultralytics
+transformers
+torch
+easyocr
+opencv-python-headless
+pillow
+numpy
+requests
+beautifulsoup4
