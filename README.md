@@ -1,3 +1,19 @@
+Model & Checkpoint Download (Required)
+
+The following folders are **excluded from GitHub** and must be downloaded manually:
+
+- `rtdetr_checkpoint/` https://drive.google.com/drive/folders/1I8zPx4UWPfbDwUtxhPw3BdaXKpRMqyzJ?usp=drive_link
+- `indonesian_plate_ocr_lora/` https://drive.google.com/drive/folders/1D9Vl3U1tQdESi6XDFDrsc4hm0Qhqo2wA?usp=sharing
+- Model weight files (`*.pt`, `*.pth`)
+
+
+After downloading, place the folders inside the project root directory:
+
+```text
+Computer Vision - LB02 - Group 6/
+├── rtdetr_checkpoint/
+├── indonesian_plate_ocr_lora/
+
 # A Comparative Analysis of Deep Learning Pipelines for Real-Time Indonesian ALPR and Vehicle Tax Inquiry
 
 **Authors:**
