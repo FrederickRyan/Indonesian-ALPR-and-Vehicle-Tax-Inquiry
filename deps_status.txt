@@ -1,8 +1,0 @@
-Python Version: 3.12.3 (tags/v3.12.3:f6650f9, Apr  9 2024, 14:05:25) [MSC v.1938 64 bit (AMD64)]
-cv2: INSTALLED - OK
-numpy: INSTALLED - OK
-easyocr: INSTALLED - OK
-torch: INSTALLED - OK
-ultralytics: INSTALLED - OK
-transformers: INSTALLED - OK
-PIL: INSTALLED - OK
