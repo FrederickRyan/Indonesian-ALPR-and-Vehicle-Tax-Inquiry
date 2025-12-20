@@ -1,0 +1,18 @@
+# Install PyTorch with CUDA FIRST before this file!
+# Run: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# Then: pip install -r requirements.txt
+
+ultralytics
+transformers
+easyocr
+peft
+accelerate
+bitsandbytes
+addict
+einops
+streamlit
+opencv-python-headless
+pillow
+numpy
+requests
+beautifulsoup4
