@@ -63,10 +63,16 @@ def check_banten_tax_live(plate_string: str) -> dict:
 
     kode, nomor, seri = parsed["kode"], parsed["nomor"], parsed["seri"]
 
-    url = "https://infopkb.bantenprov.go.id/p_infopkb.php"
+    base_url = "https://infopkb.bantenprov.go.id"
+    url = f"{base_url}/p_infopkb.php"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-        "Referer": "https://infopkb.bantenprov.go.id/index.php",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": f"{base_url}/index.php",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Connection": "keep-alive",
+        "Origin": base_url,
+        "Content-Type": "application/x-www-form-urlencoded",
     }
 
     payload = {
@@ -79,7 +85,10 @@ def check_banten_tax_live(plate_string: str) -> dict:
 
     try:
         session = requests.Session()
-        response = session.post(url, data=payload, headers=headers, timeout=30)
+        # First visit the homepage to get any cookies (mimics browser behavior)
+        session.get(f"{base_url}/index.php", headers=headers, timeout=15, verify=True)
+        # Now make the actual POST request
+        response = session.post(url, data=payload, headers=headers, timeout=30, verify=True)
 
         if "DATA KENDARAAN TIDAK ADA" in response.text.upper():
             return {"Status": "Not Found", "Message": "Plate number not found in database."}
@@ -99,13 +108,23 @@ def check_banten_tax_live(plate_string: str) -> dict:
 
         rows = soup.find_all("div", class_="row")
         for row in rows:
-            key_div = row.find("div", class_=lambda x: x and "col-4" in x)
-            val_div = row.find("div", class_=lambda x: x and "col-8" in x)
+            # Use recursive=False to only get direct children, avoiding duplicate nested rows
+            key_div = row.find("div", class_=lambda x: x and "col-4" in x, recursive=False)
+            val_div = row.find("div", class_=lambda x: x and "col-8" in x, recursive=False)
             if not key_div or not val_div:
                 continue
 
             raw_key = key_div.get_text(" ", strip=True).upper().replace(":", "")
+            # Get only direct text content to avoid duplicates from nested elements
             raw_val = val_div.get_text(" ", strip=True)
+            # If value is duplicated (e.g., "HONDA HONDA"), take only the first half
+            words = raw_val.split()
+            if len(words) >= 2 and len(words) % 2 == 0:
+                half = len(words) // 2
+                first_half = words[:half]
+                second_half = words[half:]
+                if first_half == second_half:
+                    raw_val = " ".join(first_half)
 
             if any(t in raw_key for t in target_keys):
                 clean_key = next(t for t in target_keys if t in raw_key)
