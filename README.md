@@ -5,8 +5,6 @@
 - Frederick Ryan Suryardi – 2702223033
 - Nico Valerian Marcello – 2702250242
 
-**Course:** COMP7116001 - Computer Vision
-
 ---
 
 ## 1. Introduction
