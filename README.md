@@ -55,6 +55,9 @@ The project utilizes the **Indonesian Plate Number from Multi-Sources dataset**,
 | `rtdetr_checkpoint/` | RT-DETRv2 fine-tuned checkpoint |
 | `indonesian_plate_ocr_lora/` | LoRA adapter for fine-tuned DeepSeek-OCR |
 
+You can download the folder for `rtdetr_checkpoint` and `indonesian_plate_ocr_lora` on the link below:
+`rtdetr_checkpoint/`: https://drive.google.com/drive/folders/1I8zPx4UWPfbDwUtxhPw3BdaXKpRMqyzJ?usp=drive_link
+`indonesian_plate_ocr_lora/`: https://drive.google.com/drive/folders/1D9Vl3U1tQdESi6XDFDrsc4hm0Qhqo2wA?usp=sharing
 ### Training Notebooks
 
 | File | Description |
